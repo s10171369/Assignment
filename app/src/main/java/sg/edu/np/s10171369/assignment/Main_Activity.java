@@ -1,15 +1,61 @@
 package sg.edu.np.s10171369.assignment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main_Activity extends AppCompatActivity {
+
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    RecyclerView.Adapter itemAdapter;
+    static View.OnClickListener myOnClickListener;
+
+    List<MainPageDataModel> data = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_);
 
-        //Testing one two three
+        myOnClickListener = new MyOnClickListener(this);
+
+        // add data into arraylist
+        data.add(new MainPageDataModel(R.drawable.worryhugged, "Hero Guide"));
+        data.add(new MainPageDataModel(R.drawable.worryhugged, "Raid Guide"));
+
+        recyclerView = findViewById(R.id.recyclerView);
+        itemAdapter = new MainPageCustomAdapter(data);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(itemAdapter);
+        //recyclerView.setOnClickListener(new myOnClickListener(this));
+    }
+
+    private class MyOnClickListener implements View.OnClickListener{
+        private Context context;
+        private MyOnClickListener(Context src) {
+            this.context = src;
+        }
+        @Override
+        public void onClick(View v) {
+            // code what happens when user clicks on an item
+            launchPage(v);
+        }
+    }
+    private void launchPage(View v) {
+        int selectedItemPosition = recyclerView.getChildPosition(v);
+        Intent intent = new Intent(this, HeroGuide.class);
+        startActivity(intent);
+
     }
 }
