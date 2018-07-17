@@ -46,6 +46,9 @@ public class HeroGuideAdapter extends RecyclerView.Adapter<HeroGuideAdapter.View
     @Override
     public HeroGuideAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(hcontext).inflate(R.layout.recycler_view_item, parent, false);
+
+        view.setOnClickListener(HeroGuide.myOnClickListener);
+
         return new ViewHolder(view);
     }
 

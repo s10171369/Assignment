@@ -1,5 +1,8 @@
 package sg.edu.np.s10171369.assignment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HeroDataModel {
     private int HeroImage;
     private String HeroName;
@@ -7,11 +10,12 @@ public class HeroDataModel {
     private String HeroStory;
     private int HeroUW;
     private int UT3Image;
+    private List<Skill> SkillList = new ArrayList<>();
 
-    private Skill Skill1;
+    /*private Skill Skill1;
     private Skill Skill2;
     private Skill Skill3;
-    private Skill Skill4;
+    private Skill Skill4;*/
 
     public HeroDataModel(int heroImage, String heroName, String heroTitle, String heroStory, int heroUW, int ut3Image, Skill s1, Skill s2, Skill s3, Skill s4)
     {
@@ -21,10 +25,14 @@ public class HeroDataModel {
         HeroStory = heroStory;
         HeroUW = heroUW;
         UT3Image = ut3Image;
-        Skill1 = s1;
+        /*Skill1 = s1;
         Skill2 = s2;
         Skill3 = s3;
-        Skill4 = s4;
+        Skill4 = s4;*/
+        SkillList.add(s1);
+        SkillList.add(s2);
+        SkillList.add(s3);
+        SkillList.add(s4);
     }
 
     public int getHeroImage(){
@@ -51,20 +59,8 @@ public class HeroDataModel {
         return UT3Image;
     }
 
-    public Skill getSkill1() {
-        return Skill1;
-    }
-
-    public Skill getSkill2() {
-        return Skill2;
-    }
-
-    public Skill getSkill3() {
-        return Skill3;
-    }
-
-    public Skill getSkill4() {
-        return Skill4;
+    public List getSkillList(){
+        return SkillList;
     }
 
 }

@@ -49,13 +49,14 @@ public class Main_Activity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             // code what happens when user clicks on an item
-            launchPage(v);
+            launchPages(v);
         }
     }
-    private void launchPage(View v) {
-        int selectedItemPosition = recyclerView.getChildPosition(v);
-        Intent intent = new Intent(this, HeroGuide.class);
-        startActivity(intent);
-
+    private void launchPages(View v) {
+        int index = recyclerView.getChildPosition(v);
+        if (index == 0){
+            Intent intent = new Intent(this, HeroGuide.class);
+            startActivity(intent);
+        }
     }
 }
