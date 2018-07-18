@@ -24,8 +24,6 @@
         <activity android:name=".ExtraInfo" />
         <activity android:name=".Credits" />
         <activity android:name=".RaidGuide" />
-        <activity android:name=".TipsGuide" />
-        <activity android:name=".ItemListGuide"></activity>
     </application>
 
 </manifest>

@@ -13,7 +13,7 @@ import java.util.List;
 public class HeroGuide extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    List<HeroDataModel> data;
+    static List<HeroDataModel> data;
     static View.OnClickListener myOnClickListener;
     static int indexPosition;
 
@@ -25,17 +25,19 @@ public class HeroGuide extends AppCompatActivity {
         myOnClickListener = new MyOnClickListener(this);
 
         recyclerView = findViewById(R.id.recyclerView);
+        List<Skill> demiaSkills = new ArrayList<>();
+        demiaSkills.add(new Skill(R.drawable.worryhugged, "skill1","cc","1 less mana", "increased chance"));
+        demiaSkills.add(new Skill(R.drawable.worryhugged, "skill2","buff","1 less mana", "increased chance"));
+        demiaSkills.add(new Skill(R.drawable.worryhugged, "skill3","cc","1 less mana", "increased chance"));
+        demiaSkills.add(new Skill(R.drawable.worryhugged, "skill4","passive","1 less mana", "increased chance"));
+        List<Skill> soniaSkills = new ArrayList<>();
+        soniaSkills.add(new Skill(R.drawable.worryhugged, "skill1","cc","1 less mana", "increased chance"));
+        soniaSkills.add(new Skill(R.drawable.worryhugged, "skill2","buff","1 less mana", "increased chance"));
+        soniaSkills.add(new Skill(R.drawable.worryhugged, "skill3","cc","1 less mana", "increased chance"));
+        soniaSkills.add(new Skill(R.drawable.worryhugged, "skill4","passive","1 less mana", "increased chance"));
         data = new ArrayList<>();
-        data.add(new HeroDataModel(R.drawable.worryhugged, "Sonia", "UltimateTanker","HeroStory", R.drawable.worryhugged, R.drawable.worryhugged,
-                new Skill(R.drawable.worryhugged, "skill1","cc","1 less mana", "increased chance"),
-                new Skill(R.drawable.worryhugged, "skill2","buff","1 less mana", "increased chance"),
-                new Skill(R.drawable.worryhugged, "skill3","cc","1 less mana", "increased chance"),
-                new Skill(R.drawable.worryhugged, "skill4","passive","1 less mana", "increased chance")));
-        data.add(new HeroDataModel(R.drawable.worryhugged, "Demia", "UltimateTanker","HeroStory", R.drawable.worryhugged, R.drawable.worryhugged,
-                new Skill(R.drawable.worryhugged, "skill1","cc","1 less mana", "increased chance"),
-                new Skill(R.drawable.worryhugged, "skill2","buff","1 less mana", "increased chance"),
-                new Skill(R.drawable.worryhugged, "skill3","cc","1 less mana", "increased chance"),
-                new Skill(R.drawable.worryhugged, "skill4","passive","1 less mana", "increased chance")));
+        data.add(new HeroDataModel(R.drawable.worryhugged, "Sonia", "UltimateTanker","HeroStory", R.drawable.worryhugged, R.drawable.worryhugged, soniaSkills));
+        data.add(new HeroDataModel(R.drawable.worryhugged, "Demia", "UltimateTanker","HeroStory", R.drawable.worryhugged, R.drawable.worryhugged, demiaSkills));
 
         HeroGuideAdapter itemAdapter = new HeroGuideAdapter(this, data);
         recyclerView.setAdapter(itemAdapter);

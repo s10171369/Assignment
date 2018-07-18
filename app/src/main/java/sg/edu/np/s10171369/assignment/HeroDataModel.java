@@ -10,14 +10,14 @@ public class HeroDataModel {
     private String HeroStory;
     private int HeroUW;
     private int UT3Image;
-    private List<Skill> SkillList = new ArrayList<>();
+    private List<Skill> SkillList;
 
     /*private Skill Skill1;
     private Skill Skill2;
     private Skill Skill3;
     private Skill Skill4;*/
 
-    public HeroDataModel(int heroImage, String heroName, String heroTitle, String heroStory, int heroUW, int ut3Image, Skill s1, Skill s2, Skill s3, Skill s4)
+    public HeroDataModel(int heroImage, String heroName, String heroTitle, String heroStory, int heroUW, int ut3Image, List<Skill> skillList)
     {
         HeroImage = heroImage;
         HeroName = heroName;
@@ -29,10 +29,11 @@ public class HeroDataModel {
         Skill2 = s2;
         Skill3 = s3;
         Skill4 = s4;*/
-        SkillList.add(s1);
+        /*SkillList.add(s1);
         SkillList.add(s2);
         SkillList.add(s3);
-        SkillList.add(s4);
+        SkillList.add(s4);*/
+        SkillList = skillList;
     }
 
     public int getHeroImage(){
@@ -59,44 +60,8 @@ public class HeroDataModel {
         return UT3Image;
     }
 
-    public List getSkillList(){
+    public List<Skill> getSkillList(){
         return SkillList;
-    }
-
-}
-class Skill {
-    private int SkillImage;
-    private String SkillName;
-    private String SkillDescription;
-    private String SkillLight;
-    private String SkillDark;
-
-    public Skill(int skillImage, String skillName, String skillDescription, String skillLight, String skillDark) {
-        SkillImage = skillImage;
-        SkillName = skillName;
-        SkillDescription = skillDescription;
-        SkillLight = skillLight;
-        SkillDark = skillDark;
-    }
-
-    public int getSkillImage(){
-        return SkillImage;
-    }
-
-    public String getSkillName(){
-        return SkillName;
-    }
-
-    public String getSkillDescription(){
-        return SkillDescription;
-    }
-
-    public String getSkillLight(){
-        return SkillLight;
-    }
-
-    public String getSkillDark(){
-        return SkillDark;
     }
 
 }
