@@ -58,5 +58,9 @@ public class Main_Activity extends AppCompatActivity {
             Intent intent = new Intent(this, HeroGuide.class);
             startActivity(intent);
         }
+        if (index == 1){
+            Intent intent = new Intent(this, RaidGuide.class);
+            startActivity(intent);
+        }
     }
 }

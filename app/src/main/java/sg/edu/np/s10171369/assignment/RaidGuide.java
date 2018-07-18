@@ -2,6 +2,7 @@ package sg.edu.np.s10171369.assignment;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -12,7 +13,7 @@ public class RaidGuide extends AppCompatActivity {
 
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
-    RaidGuideAdapter itemAdapter;
+    RecyclerView.Adapter itemAdapter;
 
     List<RaidBossDataModel> data = new ArrayList<>();
 
@@ -28,8 +29,12 @@ public class RaidGuide extends AppCompatActivity {
         RecommendedHeroes = HeroGuide.data;
         data.add(new RaidBossDataModel("Guild Conquest", "Turd", R.drawable.worryhugged, "Hard Ass Boss", TurtleSkill, RecommendedHeroes));
 
+        recyclerView = findViewById(R.id.recyclerView);
         itemAdapter = new RaidGuideAdapter(this, data);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(itemAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         }
 }

@@ -16,14 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".HomePage"
-            android:label="@string/title_activity_home_page" />
         <activity android:name=".HeroGuide" />
         <activity android:name=".Hero" />
         <activity android:name=".ExtraInfo" />
         <activity android:name=".Credits" />
         <activity android:name=".RaidGuide" />
+        <activity android:name=".RaidBoss"></activity>
     </application>
 
 </manifest>
