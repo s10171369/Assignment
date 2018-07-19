@@ -31,14 +31,14 @@ public class RaidGuideAdapter extends RecyclerView.Adapter<RaidGuideAdapter.View
 
         public void setData(RaidBossDataModel item){
             imageView.setImageResource(item.getBossImage());
-            textView.setText(item.getRaidName());
+            textView.setText(item.getBossName());
         }
     }
 
     @Override
     public RaidGuideAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.cards_layout, parent, false);
-
+        view.setOnClickListener(RaidGuide.myOnClickListener);
         return new ViewHolder(view);
     }
 

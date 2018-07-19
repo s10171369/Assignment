@@ -30,7 +30,7 @@
 
             <TextView
                 android:id="@+id/NameTextView"
-                android:layout_width="251dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -41,18 +41,16 @@
 
             <TextView
                 android:id="@+id/DescTextView"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:text="Skill Desc"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/SkillImageView"
                 app:layout_constraintTop_toBottomOf="@+id/NameTextView" />
 
             <TextView
                 android:id="@+id/DarkTextView"
-                android:layout_width="233dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Skill Dark"
@@ -64,7 +62,7 @@
 
             <TextView
                 android:id="@+id/LightTextView"
-                android:layout_width="116dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
@@ -74,6 +72,16 @@
                 app:layout_constraintHorizontal_weight="5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/SkillImageView" />
+
+            <TextView
+                android:id="@+id/CoolDownTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="skill cooldown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
 
