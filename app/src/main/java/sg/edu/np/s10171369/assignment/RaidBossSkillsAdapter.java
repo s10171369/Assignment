@@ -26,6 +26,8 @@ public class RaidBossSkillsAdapter extends RecyclerView.Adapter<RaidBossSkillsAd
         TextView nameText;
         TextView cooldownText;
         TextView descText;
+        TextView skillLight;
+        TextView skillDark;
 
         public ViewHolder(View v){
             super(v);
@@ -33,14 +35,20 @@ public class RaidBossSkillsAdapter extends RecyclerView.Adapter<RaidBossSkillsAd
             nameText = v.findViewById(R.id.NameTextView);
             cooldownText = v.findViewById(R.id.CoolDownTextView);
             descText = v.findViewById(R.id.DescTextView);
+            skillLight = v.findViewById(R.id.LightTextView);
+            skillDark = v.findViewById(R.id.DarkTextView);
         }
 
         public void setData(int index){
             Skill skill = skillList.get(index);
             skillImage.setImageResource(skill.getSkillImage());
             nameText.setText(skill.getSkillName());
-            cooldownText.setText(skill.getSkillCooldown() + "Seconds");
+            cooldownText.setText(skill.getSkillCooldown() + " Seconds");
             descText.setText(skill.getSkillDescription());
+            skillLight.setVisibility(View.GONE);
+            skillDark.setVisibility(View.GONE);
+            //skillLight.setText(null);
+            //skillDark.setText(null);
         }
     }
 

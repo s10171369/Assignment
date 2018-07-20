@@ -23,7 +23,7 @@ public class RaidGuide extends AppCompatActivity {
     static int indexPosition;
     static List<Skill> TurtleSkill;
 
-    List<RaidBossDataModel> data = new ArrayList<>();
+    static List<RaidBossDataModel> data = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +35,27 @@ public class RaidGuide extends AppCompatActivity {
         // add data
         TurtleSkill= new ArrayList<>();
         TurtleSkill.add(new Skill(R.drawable.worryhugged, "Avalache","Rains ice crystals from above", 35));
-        List<HeroDataModel> RecommendedHeroes = new ArrayList<>();
-        RecommendedHeroes = HeroGuide.data;
+        TurtleSkill.add(new Skill(R.drawable.worryhugged, "Avalache","Rains ice crystals from above", 35));
+        TurtleSkill.add(new Skill(R.drawable.worryhugged, "Avalache","Rains ice crystals from above", 35));
+        TurtleSkill.add(new Skill(R.drawable.worryhugged, "Avalache","Rains ice crystals from above", 35));
+
+        List<Skill> demiaSkills = new ArrayList<>();
+        demiaSkills.add(new Skill(R.drawable.worryhugged, "skill1","cc","1 less mana", "increased chance"));
+        demiaSkills.add(new Skill(R.drawable.worryhugged, "skill2","buff","1 less mana", "increased chance"));
+        demiaSkills.add(new Skill(R.drawable.worryhugged, "skill3","cc","1 less mana", "increased chance"));
+        demiaSkills.add(new Skill(R.drawable.worryhugged, "skill4","passive","1 less mana", "increased chance"));
+        List<Skill> soniaSkills = new ArrayList<>();
+        soniaSkills.add(new Skill(R.drawable.worryhugged, "skill1","cc","1 less mana", "increased chance"));
+        soniaSkills.add(new Skill(R.drawable.worryhugged, "skill2","buff","1 less mana", "increased chance"));
+        soniaSkills.add(new Skill(R.drawable.worryhugged, "skill3","cc","1 less mana", "increased chance"));
+        soniaSkills.add(new Skill(R.drawable.worryhugged, "skill4","passive","1 less mana", "increased chance"));
+        List<HeroDataModel> heroData = new ArrayList<>();
+        heroData.add(new HeroDataModel(R.drawable.worryhugged, "Sonia", "UltimateTanker","HeroStory", R.drawable.worryhugged, R.drawable.worryhugged, soniaSkills));
+        heroData.add(new HeroDataModel(R.drawable.worryhugged, "Demia", "UltimateTanker","HeroStory", R.drawable.worryhugged, R.drawable.worryhugged, demiaSkills));
+
+        List<HeroDataModel> RecommendedHeroes = heroData;
         data.add(new RaidBossDataModel(R.drawable.worryhugged, "Guild Conquest", "Turd", "Hard Ass Boss", TurtleSkill, RecommendedHeroes));
+        data.add(new RaidBossDataModel(R.drawable.worryhugged, "Guild Raid", "Manti", "Simple", TurtleSkill, RecommendedHeroes));
 
         recyclerView = findViewById(R.id.recyclerView);
         itemAdapter = new RaidGuideAdapter(this, data);

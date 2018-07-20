@@ -1,123 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="192dp">
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/BossImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:longClickable="false"
+            android:scaleType="centerCrop"
+            app:layout_collapseMode="parallax"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/RaidNameTextView" />
+
+        <TextView
+            android:id="@+id/BossNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/RaidNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BossNameTextView" />
+
+        <TextView
+            android:id="@+id/BossDescTextSwitcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:textAlignment="textEnd"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="5"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/skillView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SkillTitleTextView" />
 
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolBar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
-            app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
-            app:toolbarId="@+id/toolbar">
+        <TextView
+            android:id="@+id/HeroesTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Recommended Heroes"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="@+id/skillView"
+            app:layout_constraintStart_toStartOf="@+id/skillView"
+            app:layout_constraintTop_toBottomOf="@+id/skillView" />
 
-            <ImageView
-                android:id="@+id/app_bar_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:longClickable="false"
-                android:scaleType="centerCrop"
-                android:src="@android:drawable/sym_def_app_icon"
-                app:layout_collapseMode="parallax" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/heroView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/HeroesTitleTextView" />
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:alwaysDrawnWithCache="false"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        <TextView
+            android:id="@+id/SkillTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Skill Info"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BossImageView" />
 
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
+    </android.support.constraint.ConstraintLayout>
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/RaidNameTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    app:layout_constraintStart_toEndOf="@+id/BossimageSwitcher"
-                    app:layout_constraintTop_toTopOf="@+id/BossimageSwitcher" />
-
-                <TextView
-                    android:id="@+id/BossDescTextSwitcher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="8dp"
-                    app:layout_constraintStart_toEndOf="@+id/BossimageSwitcher"
-                    app:layout_constraintTop_toBottomOf="@+id/RaidNameTextView" />
-
-                <ImageView
-                    android:id="@+id/BossimageSwitcher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/skillView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/BossimageSwitcher"/>
-
-
-                <TextView
-                    android:id="@+id/HeroesTitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Recommended Heroes"
-                    app:layout_constraintEnd_toEndOf="@+id/skillView"
-                    app:layout_constraintStart_toStartOf="@+id/skillView"
-                    app:layout_constraintTop_toBottomOf="@+id/skillView" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/heroView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/HeroesTitleTextView" />
-
-            </android.support.constraint.ConstraintLayout>
-        </android.support.v4.widget.NestedScrollView>
-    </android.support.v4.widget.NestedScrollView>
-
-</android.support.design.widget.CoordinatorLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -22,6 +22,7 @@ public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.ViewHolder> {
         public ImageView heroImage;
         public TextView nameText;
         public TextView descText;
+        public TextView cooldownText;
         public TextView lightText;
         public TextView darkText;
 
@@ -30,6 +31,7 @@ public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.ViewHolder> {
             heroImage = v.findViewById(R.id.SkillImageView);
             nameText = v.findViewById(R.id.NameTextView);
             descText = v.findViewById(R.id.DescTextView);
+            cooldownText = v.findViewById(R.id.CoolDownTextView);
             lightText = v.findViewById(R.id.LightTextView);
             darkText = v.findViewById(R.id.DarkTextView);
         }
@@ -39,8 +41,9 @@ public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.ViewHolder> {
            heroImage.setImageResource(skill.getSkillImage());
            nameText.setText(skill.getSkillName());
            descText.setText(skill.getSkillDescription());
-           lightText.setText(skill.getSkillLight());
-           darkText.setText(skill.getSkillDark());
+           cooldownText.setVisibility(itemView.GONE);
+           lightText.setText("Light Perk\n" + skill.getSkillLight());
+           darkText.setText("Dark Perk\n"  + skill.getSkillDark());
         }
     }
 

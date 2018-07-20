@@ -6,44 +6,51 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
 public class RaidBossHeroesAdapter extends RecyclerView.Adapter<RaidBossHeroesAdapter.ViewHolder>{
-    List<HeroDataModel> heroList;
+
+    List heroList;
     Context context;
 
-    public RaidBossHeroesAdapter(Context src, List<HeroDataModel> heroes) {
+    public RaidBossHeroesAdapter(Context src, List heroes) {
         heroList = heroes;
         context = src;
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
         public RelativeLayout relativeLayout;
-        public TextView heroName;
+        public ImageView imageView;
+        public TextView textView;
+        HeroDataModel item;
 
         public ViewHolder(View v) {
             super(v);
+            imageView = v.findViewById(R.id.imageView);
+            textView = v.findViewById(R.id.textView);
             relativeLayout = v.findViewById(R.id.relativeLayout);
         }
 
-        public void setData(HeroDataModel item) {
+        public void setData(HeroDataModel hero) {
+            this.item = hero;
+
             relativeLayout.setBackgroundResource(item.getHeroImage());
         }
     }
 
     @Override
     public RaidBossHeroesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context)
-                .inflate(R.layout.recycler_view_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_item, parent, false);
 
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder Vholder, int position){
-        Vholder.setData(heroList.get(position));
+        Vholder.setData((HeroDataModel) heroList.get(position));
     }
 
     @Override
