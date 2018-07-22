@@ -2,6 +2,7 @@ package sg.edu.np.s10171369.assignment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -32,6 +33,9 @@ public class RaidGuide extends AppCompatActivity {
 
         myOnClickListener = new MyOnClickListener(this);
 
+        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setTitle("List of Raid Bosses");
+
         // add data
         TurtleSkill= new ArrayList<>();
         TurtleSkill.add(new Skill(R.drawable.worryhugged, "Avalache","Rains ice crystals from above", 35));
@@ -55,6 +59,9 @@ public class RaidGuide extends AppCompatActivity {
 
         List<HeroDataModel> RecommendedHeroes = heroData;
         data.add(new RaidBossDataModel(R.drawable.worryhugged, "Guild Conquest", "Turd", "Hard Ass Boss", TurtleSkill, RecommendedHeroes));
+        data.add(new RaidBossDataModel(R.drawable.worryhugged, "Guild Raid", "Manti", "Simple", TurtleSkill, RecommendedHeroes));
+        data.add(new RaidBossDataModel(R.drawable.worryhugged, "Guild Raid", "Manti", "Simple", TurtleSkill, RecommendedHeroes));
+        data.add(new RaidBossDataModel(R.drawable.worryhugged, "Guild Raid", "Manti", "Simple", TurtleSkill, RecommendedHeroes));
         data.add(new RaidBossDataModel(R.drawable.worryhugged, "Guild Raid", "Manti", "Simple", TurtleSkill, RecommendedHeroes));
 
         recyclerView = findViewById(R.id.recyclerView);

@@ -35,7 +35,7 @@ public class MainPageCustomAdapter extends RecyclerView.Adapter<MainPageCustomAd
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.cards_layout, parent, false);
 
-        view.setOnClickListener(Main_Activity.myOnClickListener);
+        view.setOnClickListener(Guides.myOnClickListener);
 
         ViewHolder ViewHolder = new ViewHolder(view);
         return ViewHolder;
