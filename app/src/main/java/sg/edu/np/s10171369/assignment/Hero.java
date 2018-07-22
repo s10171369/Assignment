@@ -1,5 +1,6 @@
 package sg.edu.np.s10171369.assignment;
 
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,12 +13,6 @@ import java.util.List;
 
 public class Hero extends AppCompatActivity {
 
-    TextView nameText;
-    TextView storyText;
-    ImageView heroImage;
-    ImageView UWImage;
-    ImageView UT3Image;
-
     RecyclerView skillView;
     RecyclerView.LayoutManager layoutManager;
 
@@ -26,20 +21,27 @@ public class Hero extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hero);
 
-        nameText = findViewById(R.id.NameTextView);
-        storyText = findViewById(R.id.StoryTextView);
-        heroImage = findViewById(R.id.HeroImageView);
-        UWImage = findViewById(R.id.UWImageVIew);
-        UT3Image = findViewById(R.id.UT3ImageView);
-        skillView = findViewById(R.id.SkillsRecyclerView);
-
         HeroDataModel item = HeroGuide.data.get(HeroGuide.indexPosition);
-        nameText.setText(item.getHeroTitle() + item.getHeroName());
+
+        CollapsingToolbarLayout nameText = findViewById(R.id.collapsing_toolbar);
+        nameText.setTitle(item.getHeroTitle() + item.getHeroName());
+
+        TextView heroTitle = findViewById(R.id.NameTextView);
+        heroTitle.setText(item.getHeroTitle());
+
+        TextView storyText = findViewById(R.id.StoryTextView);
         storyText.setText(item.getHeroStory());
+
+        ImageView heroImage = findViewById(R.id.app_bar_image);
         heroImage.setImageResource(item.getHeroImage());
+
+        ImageView UWImage = findViewById(R.id.UWImageVIew);
         UWImage.setImageResource(item.getHeroUW());
+
+        ImageView UT3Image = findViewById(R.id.UT3ImageView);
         UT3Image.setImageResource(item.getUT3Image());
 
+        skillView = findViewById(R.id.SkillsRecyclerView);
         HeroAdapter itemAdapter = new HeroAdapter(this, item.getSkillList());
         skillView.setAdapter(itemAdapter);
 

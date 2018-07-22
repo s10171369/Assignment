@@ -24,25 +24,31 @@ public class RaidBoss extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_raid_boss);
 
-        ImageView bossImageView = findViewById(R.id.BossImageView);
+        ImageView bossImageView = findViewById(R.id.app_bar_image);
+        bossImageView.setImageResource(boss.getBossImage());
+
         TextView raidNameText = findViewById(R.id.RaidNameTextView);
+        raidNameText.setText(boss.getRaidName());
+
+        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setTitle(boss.getBossName());
+
         TextView bossName = findViewById(R.id.BossNameTextView);
+        bossName.setVisibility(bossImageView.GONE);
+
         TextView bossDescText = findViewById(R.id.BossDescTextSwitcher);
+        bossDescText.setText(boss.getBossDescription());
+
         RecyclerView skillView = findViewById(R.id.skillView);
         RecyclerView heroView = findViewById(R.id.heroView);
-
-        bossImageView.setImageResource(boss.getBossImage());
-        raidNameText.setText(boss.getRaidName());
-        bossName.setText(boss.getBossName());
-        bossDescText.setText(boss.getBossDescription());
 
         skillView.setItemAnimator(new DefaultItemAnimator());
         skillView.setLayoutManager(new LinearLayoutManager(this));
         RecyclerView.Adapter skillsAdapter = new RaidBossSkillsAdapter(this, RaidGuide.TurtleSkill);
         skillView.setAdapter(skillsAdapter);
 
-        skillView.setFocusable(false);
-        bossName.requestFocus();
+        //skillView.setFocusable(false);
+        //raidNameText.requestFocus();
 
         //AutoFitGridLayoutManager heroViewLayout = new AutoFitGridLayoutManager(this, 200);
         GridLayoutManager heroViewLayout = new GridLayoutManager(this, 3);
