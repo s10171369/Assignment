@@ -1,5 +1,6 @@
 package sg.edu.np.s10171369.assignment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,10 +21,10 @@ public class HomePage extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab =  findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,7 +33,7 @@ public class HomePage extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -44,7 +45,7 @@ public class HomePage extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -80,21 +81,28 @@ public class HomePage extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_home){
+            Snackbar snackBar = Snackbar.make(findViewById(R.id.drawer_layout),"Coming Soon", Snackbar.LENGTH_SHORT);
+            snackBar.show();
+        }
+        else if (id == R.id.nav_guides) {
+            Intent intent = new Intent(this, Guides.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_tips) {
+            Snackbar snackBar = Snackbar.make(findViewById(R.id.drawer_layout),"Coming Soon", Snackbar.LENGTH_SHORT);
+            snackBar.show();
+        }
+        else if (id == R.id.nav_extrainfo) {
+            Snackbar snackBar = Snackbar.make(findViewById(R.id.drawer_layout),"Coming Soon", Snackbar.LENGTH_SHORT);
+            snackBar.show();
+        }
+        else if (id == R.id.nav_credits) {
+            Snackbar snackBar = Snackbar.make(findViewById(R.id.drawer_layout),"Coming Soon", Snackbar.LENGTH_SHORT);
+            snackBar.show();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

@@ -22,51 +22,59 @@ import java.util.List;
 
 public class RaidBoss extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
 
-    RaidBossDataModel boss = RaidGuide.data.get(RaidGuide.indexPosition);
-    int difficulty = boss.getHardDifficulty();
+    public RaidBossDataModel boss = RaidGuide.data.get(RaidGuide.indexPosition);
+    public int difficulty = boss.getHardDifficulty();
 
-    Toolbar toolbar;
-    CollapsingToolbarLayout collapsingToolbarLayout;
+    public ImageView bossImageView;
+    public TextView raidNameText;
+    public TextView bossName;
+    public TextView bossDescText;
+    public Toolbar toolbar;
+    public CollapsingToolbarLayout collapsingToolbarLayout;
+    public RecyclerView skillView;
+    public RecyclerView.Adapter skillsAdapter;
+    public RecyclerView heroView;
+    public RecyclerView.Adapter heroesAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_raid_boss);
 
-        ImageView bossImageView = findViewById(R.id.app_bar_image);
+        bossImageView = findViewById(R.id.app_bar_image);
         bossImageView.setImageResource(boss.getBossImage());
 
-        TextView raidNameText = findViewById(R.id.RaidNameTextView);
+        raidNameText = findViewById(R.id.RaidNameTextView);
         raidNameText.setText(boss.getRaidName());
 
         collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle(boss.getBossName());
 
-        TextView bossName = findViewById(R.id.BossNameTextView);
+        bossName = findViewById(R.id.BossNameTextView);
         bossName.setVisibility(bossImageView.GONE);
 
-        TextView bossDescText = findViewById(R.id.BossDescTextSwitcher);
+        bossDescText = findViewById(R.id.BossDescTextSwitcher);
         bossDescText.setText(boss.getBossDescription());
 
-        RecyclerView skillView = findViewById(R.id.skillView);
-        RecyclerView heroView = findViewById(R.id.heroView);
-
+        skillView = findViewById(R.id.skillView);
         skillView.setItemAnimator(new DefaultItemAnimator());
         skillView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerView.Adapter skillsAdapter = new RaidBossSkillsAdapter(this, RaidGuide.TurtleSkill);
+        skillsAdapter = new RaidBossSkillsAdapter(this, RaidGuide.TurtleSkill);
         skillView.setAdapter(skillsAdapter);
 
-        skillView.setFocusable(false);
-        raidNameText.requestFocus();
-
-        RecyclerView.Adapter heroAdapter = new RaidBossHeroesAdapter(this, boss.getRecommendedHeroes());
-        heroView.setAdapter(heroAdapter);
-        //heroView.setItemAnimator(new DefaultItemAnimator());
+        heroView = findViewById(R.id.heroView);
+        heroesAdapter = new RaidBossHeroesAdapter(this, boss.getRecommendedHeroes());
+        heroView.setAdapter(heroesAdapter);
+        heroView.setItemAnimator(new DefaultItemAnimator());
         GridLayoutManager heroViewLayout = new GridLayoutManager(this, 3);
         heroView.setLayoutManager(heroViewLayout);
 
         toolbar = findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.normal_mode);
+
+        skillView.setFocusable(false);
+        bossDescText.requestFocus();
 
         final AppBarLayout appBar = findViewById(R.id.appbar);
         appBar.addOnOffsetChangedListener(this);
@@ -78,12 +86,24 @@ public class RaidBoss extends AppCompatActivity implements AppBarLayout.OnOffset
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     //Selected Hard Mode
+                    bossImageView.setImageResource(0);
+                    raidNameText.setText(null);
+                    collapsingToolbarLayout.setTitle(null);
+                    bossDescText.setText(null);
+                    skillView.setAdapter(null);
+                    heroView.setAdapter(null);
                 }
                 else {
-                    //Selected Normal Mode
+                    bossImageView.setImageResource(boss.getBossImage());
+                    raidNameText.setText(boss.getRaidName());
+                    collapsingToolbarLayout.setTitle(boss.getBossName());
+                    bossDescText.setText(boss.getBossDescription());
+                    skillView.setAdapter(skillsAdapter);
+                    heroView.setAdapter(heroesAdapter);
                 }
             }
         });
+
     }
 
     @Override

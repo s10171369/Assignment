@@ -47,6 +47,7 @@
         app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/BossInfoLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
