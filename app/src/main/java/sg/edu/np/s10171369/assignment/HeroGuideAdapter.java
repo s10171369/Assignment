@@ -37,8 +37,7 @@ public class HeroGuideAdapter extends RecyclerView.Adapter<HeroGuideAdapter.View
         public void setData(HeroDataModel item) {
             this.item = item;
 
-            relativeLayout.setBackgroundResource(item.getHeroImage());
-            //imageView.setImageResource(item.getHeroImage());
+            imageView.setImageBitmap(item.getHeroImage());
             textView.setText(item.getHeroName());
         }
     }

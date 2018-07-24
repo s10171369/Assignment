@@ -30,7 +30,7 @@ public class RaidGuideAdapter extends RecyclerView.Adapter<RaidGuideAdapter.View
         }
 
         public void setData(RaidBossDataModel item){
-            imageView.setImageResource(item.getBossImage());
+            imageView.setImageBitmap(item.getBossImage());
             textView.setText(item.getBossName());
         }
     }

@@ -1,13 +1,11 @@
 package sg.edu.np.s10171369.assignment;
 
 import android.content.Context;
-import android.support.v4.widget.ImageViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextSwitcher;
 import android.widget.TextView;
 
 import java.util.List;
@@ -32,7 +30,7 @@ public class RaidBossSkillsAdapter extends RecyclerView.Adapter<RaidBossSkillsAd
         public ViewHolder(View v){
             super(v);
             skillImage = v.findViewById(R.id.SkillImageView);
-            nameText = v.findViewById(R.id.NameTextView);
+            nameText = v.findViewById(R.id.TitleTextView);
             cooldownText = v.findViewById(R.id.CoolDownTextView);
             descText = v.findViewById(R.id.DescTextView);
             skillLight = v.findViewById(R.id.LightTextView);
@@ -41,7 +39,7 @@ public class RaidBossSkillsAdapter extends RecyclerView.Adapter<RaidBossSkillsAd
 
         public void setData(int index){
             Skill skill = skillList.get(index);
-            skillImage.setImageResource(skill.getSkillImage());
+            skillImage.setImageBitmap(skill.getSkillImage());
             nameText.setText(skill.getSkillName());
             cooldownText.setText(skill.getSkillCooldown() + " Seconds");
             descText.setText(skill.getSkillDescription());

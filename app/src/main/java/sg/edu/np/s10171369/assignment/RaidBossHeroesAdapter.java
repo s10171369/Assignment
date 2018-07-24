@@ -37,7 +37,7 @@ public class RaidBossHeroesAdapter extends RecyclerView.Adapter<RaidBossHeroesAd
         public void setData(HeroDataModel hero) {
             this.item = hero;
 
-            relativeLayout.setBackgroundResource(item.getHeroImage());
+            imageView.setImageBitmap(item.getHeroImage());
         }
     }
 

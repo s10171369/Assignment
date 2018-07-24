@@ -29,7 +29,7 @@ public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.ViewHolder> {
         public ViewHolder(View v) {
             super(v);
             heroImage = v.findViewById(R.id.SkillImageView);
-            nameText = v.findViewById(R.id.NameTextView);
+            nameText = v.findViewById(R.id.TitleTextView);
             descText = v.findViewById(R.id.DescTextView);
             cooldownText = v.findViewById(R.id.CoolDownTextView);
             lightText = v.findViewById(R.id.LightTextView);
@@ -38,7 +38,7 @@ public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.ViewHolder> {
 
         public void setData(int index) {
            Skill skill = skillList.get(index);
-           heroImage.setImageResource(skill.getSkillImage());
+           heroImage.setImageBitmap(skill.getSkillImage());
            nameText.setText(skill.getSkillName());
            descText.setText(skill.getSkillDescription());
            cooldownText.setVisibility(itemView.GONE);

@@ -10,11 +10,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Guides extends AppCompatActivity {
 
+    static List<HeroDataModel> heroDataList;
+    static List<RaidBossDataModel> raidBossDataList;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter itemAdapter;
@@ -36,6 +39,11 @@ public class Guides extends AppCompatActivity {
         // add data into arraylist
         data.add(new MainPageDataModel(R.drawable.worryhugged, "Hero Guide"));
         data.add(new MainPageDataModel(R.drawable.worryhugged, "Raid Guide"));
+
+        // Get hero data
+        DBHandler dbHandler = new DBHandler(this);
+        heroDataList = dbHandler.getAllHeroes();
+        raidBossDataList = dbHandler.getAllRaidBosses();
 
         recyclerView = findViewById(R.id.recyclerView);
         itemAdapter = new MainPageCustomAdapter(data);

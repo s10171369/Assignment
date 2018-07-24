@@ -1,5 +1,8 @@
 package sg.edu.np.s10171369.assignment;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,39 +17,44 @@ import java.util.List;
 public class Hero extends AppCompatActivity {
 
     RecyclerView skillView;
-    RecyclerView.LayoutManager layoutManager;
+    //RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hero);
 
-        HeroDataModel item = HeroGuide.data.get(HeroGuide.indexPosition);
+        HeroDataModel item = Guides.heroDataList.get(HeroGuide.indexPosition);
+
+        Drawable drawable = new BitmapDrawable(getResources(), item.getHeroImage());
 
         CollapsingToolbarLayout nameText = findViewById(R.id.collapsing_toolbar);
-        nameText.setTitle(item.getHeroTitle() + item.getHeroName());
+        nameText.setTitle(item.getHeroName());
+        nameText.setBackground(drawable);
 
-        TextView heroTitle = findViewById(R.id.NameTextView);
+        TextView heroTitle = findViewById(R.id.TitleTextView);
         heroTitle.setText(item.getHeroTitle());
 
         TextView storyText = findViewById(R.id.StoryTextView);
         storyText.setText(item.getHeroStory());
 
-        ImageView heroImage = findViewById(R.id.app_bar_image);
-        heroImage.setImageResource(item.getHeroImage());
-
         ImageView UWImage = findViewById(R.id.UWImageVIew);
-        UWImage.setImageResource(item.getHeroUW());
+        UWImage.setImageBitmap(item.getHeroUW());
+
+        ImageView UT2Image = findViewById(R.id.UT2ImageView);
+        UT2Image.setImageBitmap(item.getUT2Image());
 
         ImageView UT3Image = findViewById(R.id.UT3ImageView);
-        UT3Image.setImageResource(item.getUT3Image());
+        UT3Image.setImageBitmap(item.getUT3Image());
 
+        // Get and set data
+        DBHandler dbHandler = new DBHandler(this);
         skillView = findViewById(R.id.SkillsRecyclerView);
-        HeroAdapter itemAdapter = new HeroAdapter(this, item.getSkillList());
+        HeroAdapter itemAdapter = new HeroAdapter(this, dbHandler.getHeroSkills(item.getHeroName()));
         skillView.setAdapter(itemAdapter);
 
-        layoutManager = new LinearLayoutManager(this);
-        skillView.setLayoutManager(layoutManager);
+        //layoutManager = new LinearLayoutManager(this);
+        //skillView.setLayoutManager(layoutManager);
 
         skillView.setFocusable(false);
         nameText.requestFocus();

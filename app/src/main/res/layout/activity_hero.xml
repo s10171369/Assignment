@@ -17,10 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
+            app:collapsedTitleGravity="center_horizontal"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMargin="48dp"
             app:expandedTitleMarginEnd="64dp"
-
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/NameTextView"
+                android:id="@+id/TitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -67,37 +67,36 @@
                 android:text="Hero Story"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/NameTextView" />
-
-            <ImageView
-                android:id="@+id/HeroImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/NameTextView"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:layout_constraintTop_toBottomOf="@+id/TitleTextView" />
 
             <ImageView
                 android:id="@+id/UWImageVIew"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="8dp"
+                android:scaleType="fitXY"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/HeroImageView"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:layout_constraintTop_toBottomOf="@+id/TitleTextView" />
+
+            <ImageView
+                android:id="@+id/UT2ImageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="fitXY"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/UWImageVIew" />
 
             <ImageView
                 android:id="@+id/UT3ImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/UWImageVIew"
-                app:layout_constraintStart_toEndOf="@+id/UWImageVIew"
-                app:layout_constraintTop_toTopOf="@+id/UWImageVIew"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@mipmap/ic_launcher" />
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="@+id/UT2ImageView"
+                app:layout_constraintStart_toEndOf="@+id/UT2ImageView"
+                app:layout_constraintTop_toTopOf="@+id/UT2ImageView" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/SkillsRecyclerView"
@@ -111,7 +110,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/UT3ImageView" />
+                app:layout_constraintTop_toBottomOf="@+id/UT2ImageView" />
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
