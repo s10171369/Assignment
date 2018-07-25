@@ -7,8 +7,10 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,8 +23,8 @@
 
             <ImageView
                 android:id="@+id/SkillImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
@@ -46,6 +48,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:ems="16"
+                android:minHeight="60dp"
                 android:text="Skill Desc"
                 app:layout_constraintStart_toEndOf="@+id/SkillImageView"
                 app:layout_constraintTop_toBottomOf="@+id/TitleTextView" />
@@ -54,10 +58,12 @@
                 android:id="@+id/DarkTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
+                android:ems="10"
                 android:text="Skill Dark"
                 android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="@+id/LightTextView"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_weight="5"
                 app:layout_constraintStart_toEndOf="@+id/LightTextView"
@@ -70,12 +76,13 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:ems="10"
                 android:text="Skill Light"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_weight="5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/SkillImageView" />
+                app:layout_constraintTop_toBottomOf="@+id/DescTextView" />
 
             <TextView
                 android:id="@+id/CoolDownTextView"

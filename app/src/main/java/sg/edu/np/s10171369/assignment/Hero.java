@@ -17,7 +17,7 @@ import java.util.List;
 public class Hero extends AppCompatActivity {
 
     RecyclerView skillView;
-    //RecyclerView.LayoutManager layoutManager;
+    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,8 @@ public class Hero extends AppCompatActivity {
         setContentView(R.layout.activity_hero);
 
         HeroDataModel item = Guides.heroDataList.get(HeroGuide.indexPosition);
+        DBHandler dbHandler = new DBHandler(this);
+        List<Skill> heroSkills = dbHandler.getHeroSkills(item.getHeroName());
 
         Drawable drawable = new BitmapDrawable(getResources(), item.getHeroImage());
 
@@ -48,13 +50,12 @@ public class Hero extends AppCompatActivity {
         UT3Image.setImageBitmap(item.getUT3Image());
 
         // Get and set data
-        DBHandler dbHandler = new DBHandler(this);
         skillView = findViewById(R.id.SkillsRecyclerView);
-        HeroAdapter itemAdapter = new HeroAdapter(this, dbHandler.getHeroSkills(item.getHeroName()));
+        HeroAdapter itemAdapter = new HeroAdapter(this, heroSkills);
         skillView.setAdapter(itemAdapter);
 
-        //layoutManager = new LinearLayoutManager(this);
-        //skillView.setLayoutManager(layoutManager);
+        layoutManager = new LinearLayoutManager(this);
+        skillView.setLayoutManager(layoutManager);
 
         skillView.setFocusable(false);
         nameText.requestFocus();

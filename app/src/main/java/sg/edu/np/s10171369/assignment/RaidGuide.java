@@ -38,7 +38,6 @@ public class RaidGuide extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle("List of Raid Bosses");
-
         recyclerView = findViewById(R.id.recyclerView);
         itemAdapter = new RaidGuideAdapter(this, raidGuideData);
         layoutManager = new LinearLayoutManager(this);

@@ -38,6 +38,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public static final String TABLE_BOSSES = "Boss";
     public static final String DISTINCTCOL_BOSSNAME = "BossName";
+    public static final String DISTINCTCOL_BOSSIMAGE = "BossImage";
     public static final int COL_RAIDNAME = 0;
     public static final int COL_BOSSNAME = 1;
     public static final int COL_BOSSIMAGE = 2;
@@ -175,6 +176,7 @@ public class DBHandler extends SQLiteOpenHelper {
             }
             while (cursor.moveToNext());
         }
+        cursor.close();
         return heroList;
     }
 
@@ -182,7 +184,7 @@ public class DBHandler extends SQLiteOpenHelper {
         List<Skill> skillList = new ArrayList<Skill>();
 
         String query = "SELECT * FROM " + TABLE_SKILLS
-                + " WHERE " + COLUMN_HERONAME
+                + " WHERE " + "HeroName"
                 + " = \"" + heroName + "\"";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
@@ -206,13 +208,14 @@ public class DBHandler extends SQLiteOpenHelper {
             }
             while (cursor.moveToNext());
         }
+        cursor.close();
         return skillList;
     }
 
     public List<RaidBossDataModel> getDistinctRaidBosses() {
         List<RaidBossDataModel> raidBossList = new ArrayList<RaidBossDataModel>();
 
-        String query = "SELECT DISTINCT " + DISTINCTCOL_BOSSNAME + " FROM " + TABLE_BOSSES;
+        String query = "SELECT DISTINCT " + DISTINCTCOL_BOSSNAME + ", " + DISTINCTCOL_BOSSIMAGE + " FROM " + TABLE_BOSSES;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
@@ -220,19 +223,17 @@ public class DBHandler extends SQLiteOpenHelper {
             do {
                 RaidBossDataModel boss = new RaidBossDataModel();
 
-                byte[] bossImgByte = cursor.getBlob(COL_BOSSIMAGE);
+                byte[] bossImgByte = cursor.getBlob(1);
                 Bitmap bossImg = BitmapFactory.decodeByteArray(bossImgByte, 0, bossImgByte.length);
 
                 boss.setBossImage(bossImg);
-                boss.setRaidName(cursor.getString(COL_RAIDNAME));
-                boss.setBossName(cursor.getString(COL_BOSSNAME));
-                boss.setBossDescription(cursor.getString(COL_BOSSDESCRIPTION));
-                boss.setHardDifficulty(cursor.getInt(COL_HARDMODE));
+                boss.setBossName(cursor.getString(0));
 
                 raidBossList.add(boss);
             }
             while (cursor.moveToNext());
         }
+        cursor.close();
         return raidBossList;
     }
 
@@ -261,6 +262,7 @@ public class DBHandler extends SQLiteOpenHelper {
             }
             while (cursor.moveToNext());
         }
+        cursor.close();
         return raidBossList;
     }
 
@@ -269,9 +271,9 @@ public class DBHandler extends SQLiteOpenHelper {
         RaidBossDataModel hardBoss = new RaidBossDataModel();
 
         String query = "SELECT * FROM " + TABLE_BOSSES
-                + " WHERE " + COL_BOSSNAME
+                + " WHERE " + "BossName"
                 + " = \"" + bossName + "\""
-                + " AND " + COL_HARDMODE + " = 1 ";
+                + " AND " + "BossHardMode" + " = 1 ";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
@@ -285,6 +287,7 @@ public class DBHandler extends SQLiteOpenHelper {
              hardBoss.setHardDifficulty(cursor.getInt(COL_HARDMODE));
              hardBoss.setRecommendedHeroes(cursor.getString(COL_HEROESLIST));
         }
+        cursor.close();
         return hardBoss;
     }
 
@@ -292,9 +295,9 @@ public class DBHandler extends SQLiteOpenHelper {
         List<Skill> skillList = new ArrayList<Skill>();
 
         String query = "SELECT * FROM " + TABLE_SKILLS
-                + " WHERE " + COLUMN_BOSSNAME
-                + " = \"" + bossName + "\""
-                + " AND " + COL_HARD + " = " + difficulty;
+                + " WHERE " + "BossName"
+                + " = \"" + bossName + "\" AND "
+                + "HardMode" + " = " + difficulty;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
@@ -316,6 +319,7 @@ public class DBHandler extends SQLiteOpenHelper {
             }
             while (cursor.moveToNext());
         }
+        cursor.close();
         return skillList;
     }
 
@@ -324,32 +328,40 @@ public class DBHandler extends SQLiteOpenHelper {
         List<HeroDataModel> recommendedHeroes = new ArrayList<HeroDataModel>();
 
         String tempString = heroString;
+        tempString = tempString.replaceAll(" ", "");
         int findIndex;
+
         while (tempString != "") {
             findIndex = tempString.indexOf(",");
-            String heroName = tempString.substring(findIndex);
-
-            String query = "SELECT * FROM " + TABLE_HEROES
-                    + " WHERE " + COL_HERONAME
-                    + " = \"" + heroString;
-            SQLiteDatabase db = this.getWritableDatabase();
-            Cursor cursor = db.rawQuery(query, null);
-
-            if (cursor.moveToFirst()) {
-                // Get Hero Details
-                HeroDataModel hero = new HeroDataModel();
-
-                byte[] heroImgByte = cursor.getBlob(COL_HEROIMAGE);
-                Bitmap heroImg = BitmapFactory.decodeByteArray(heroImgByte, 0, heroImgByte.length);
-
-                hero.setHeroImage(heroImg);
-                hero.setHeroName(cursor.getString(COL_HERONAME));
-
-                // Add hero to list
-                recommendedHeroes.add(hero);
-                tempString.replaceFirst(heroString, "");
+            if (findIndex == -1) {
+                findIndex = tempString.length();
             }
+            String heroName = tempString.substring(0, findIndex);
+
+            HeroDataModel hero = findHeroFromName(heroName);
+            recommendedHeroes.add(hero);
+            tempString = tempString.replace(heroName, "");
+            tempString = tempString.replaceFirst(",", "");
         }
         return recommendedHeroes;
+    }
+
+    public HeroDataModel findHeroFromName(String heroName){
+        HeroDataModel hero = new HeroDataModel();
+
+        String query = "SELECT * FROM " + TABLE_HEROES
+                + " WHERE " + "HeroName"
+                + " = \"" + heroName + "\"";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            byte[] heroImgByte = cursor.getBlob(COL_HEROIMAGE);
+            Bitmap heroImg = BitmapFactory.decodeByteArray(heroImgByte, 0, heroImgByte.length);
+
+            hero.setHeroImage(heroImg);
+            hero.setHeroName(cursor.getString(COL_HERONAME));
+        }
+        cursor.close();
+        return hero;
     }
 }

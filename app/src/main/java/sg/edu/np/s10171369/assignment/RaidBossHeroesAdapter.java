@@ -38,6 +38,7 @@ public class RaidBossHeroesAdapter extends RecyclerView.Adapter<RaidBossHeroesAd
             this.item = hero;
 
             imageView.setImageBitmap(item.getHeroImage());
+            textView.setText("");
         }
     }
 

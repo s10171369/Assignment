@@ -51,7 +51,7 @@ public class Guides extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(itemAdapter);
-        //recyclerView.setOnClickListener(new myOnClickListener(this));
+        recyclerView.setOnClickListener(myOnClickListener);
     }
 
     private class MyOnClickListener implements View.OnClickListener{
