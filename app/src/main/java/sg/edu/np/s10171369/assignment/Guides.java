@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,24 +90,29 @@ public class Guides extends Fragment {
             launchPages(v);
         }
     }
+
     private void launchPages(View v) {
         int index = recyclerView.getChildPosition(v);
         if (index == 0){
-            Intent intent = new Intent(getActivity(), HeroGuide.class);
-            startActivity(intent);
+            //Intent intent = new Intent(getActivity(), HeroGuide.class);
+            //startActivity(intent);
+
+            Fragment fragment = new HeroGuide();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.flContent, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         }
         if (index == 1){
             //Intent intent = new Intent(getActivity(), RaidGuide.class);
             //startActivity(intent);
 
             Fragment fragment = new RaidGuide();
-            //FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-            //transaction.add(R.id.flContent, fragment);
-            //transaction.commit();
-
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.flContent, fragment);
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
     }

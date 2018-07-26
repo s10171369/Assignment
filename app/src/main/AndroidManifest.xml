@@ -16,11 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HeroGuide" />
-        <activity android:name=".Hero" />
         <activity android:name=".ExtraInfo" />
         <activity android:name=".Credits" />
-        <activity android:name=".RaidBoss" />
     </application>
 
 </manifest>

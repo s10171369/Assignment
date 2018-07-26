@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -61,6 +63,7 @@ public class RaidGuide extends Fragment {
 
         CollapsingToolbarLayout collapsingToolbarLayout = view.findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle("List of Raid Bosses");
+
         recyclerView = view.findViewById(R.id.recyclerView);
         itemAdapter = new RaidGuideAdapter(getActivity(), raidGuideData);
         layoutManager = new LinearLayoutManager(getActivity());
@@ -80,11 +83,19 @@ public class RaidGuide extends Fragment {
             launchRaidBossPage(v);
         }
     }
+
     private void launchRaidBossPage(View v) {
         int indexPosition = recyclerView.getChildPosition(v);
         selectedBoss = raidGuideData.get(indexPosition);
-        Intent intent = new Intent(getActivity(), RaidBoss.class);
-        startActivity(intent);
+        //Intent intent = new Intent(getActivity(), RaidBoss.class);
+        //startActivity(intent);
+
+        Fragment fragment = new RaidBoss();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.flContent, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     /*@Override

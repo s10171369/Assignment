@@ -17,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:collapsedTitleGravity="center_horizontal"
+            app:expandedTitleGravity="center"
+            app:collapsedTitleGravity="center"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMargin="48dp"
             app:expandedTitleMarginEnd="64dp"
@@ -27,11 +28,11 @@
                 android:id="@+id/app_bar_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
+                android:scaleType="centerInside"
                 app:layout_collapseMode="parallax" />
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/titleToolBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
@@ -49,6 +50,45 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/UWTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="UW"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                app:layout_constraintBottom_toBottomOf="@+id/UWImageVIew"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/UWImageVIew" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:text="UT3"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                app:layout_constraintBottom_toBottomOf="@+id/UT3ImageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/UT3ImageView" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:text="UT2"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                app:layout_constraintBottom_toBottomOf="@+id/UT2ImageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/UT2ImageView" />
 
             <TextView
                 android:id="@+id/TitleTextView"
@@ -69,7 +109,7 @@
                 android:text="Hero Story"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TitleTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/heroStoryTextView" />
 
             <ImageView
                 android:id="@+id/UWImageVIew"
@@ -77,27 +117,27 @@
                 android:layout_height="70dp"
                 android:layout_marginStart="8dp"
                 android:scaleType="fitXY"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/UWTextView"
                 app:layout_constraintTop_toBottomOf="@+id/TitleTextView" />
 
             <ImageView
                 android:id="@+id/UT2ImageView"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:scaleType="fitXY"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/UWImageVIew"
+                app:layout_constraintStart_toStartOf="@+id/UWImageVIew"
                 app:layout_constraintTop_toBottomOf="@+id/UWImageVIew" />
 
             <ImageView
                 android:id="@+id/UT3ImageView"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:scaleType="fitXY"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/UT2ImageView"
+                app:layout_constraintStart_toStartOf="@+id/UT2ImageView"
                 app:layout_constraintTop_toBottomOf="@+id/UT2ImageView" />
 
             <android.support.v7.widget.RecyclerView
@@ -114,6 +154,15 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/StoryTextView" />
+
+            <TextView
+                android:id="@+id/heroStoryTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hero Story"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintTop_toBottomOf="@+id/TitleTextView"
+                tools:layout_editor_absoluteX="233dp" />
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
