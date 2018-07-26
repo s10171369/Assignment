@@ -192,10 +192,10 @@ public class RaidBoss extends Fragment implements AppBarLayout.OnOffsetChangedLi
         }
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.normal_mode, menu);
-    }
+    //@Override
+    //public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    //    inflater.inflate(R.menu.normal_mode, menu);
+    //}
 
     @Override
     public void onPause() {

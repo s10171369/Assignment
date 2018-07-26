@@ -18,10 +18,9 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:expandedTitleGravity="center"
+            app:expandedTitleMarginTop="160dp"
             app:collapsedTitleGravity="center"
             app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMargin="48dp"
-            app:expandedTitleMarginEnd="64dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
