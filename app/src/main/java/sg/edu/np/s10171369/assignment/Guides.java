@@ -120,6 +120,7 @@ public class Guides extends Fragment {
 
             Fragment fragment = new RaidGuide();
             FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.popBackStack();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.add(R.id.flContent, fragment);
             fragmentTransaction.addToBackStack(null);

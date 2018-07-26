@@ -11,13 +11,6 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
 
-    <style name="MyStyle" parent="Widget.Design.TabLayout">
-        <item name="tabIndicatorColor">#FFFF</item>
-        <item name="tabIndicatorHeight">5dp</item>
-        <item name="tabPaddingStart">8dp</item>
-        <item name="tabPaddingEnd">8dp</item>
-    </style>
-
     <style name="ActionBar.TitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/LightYellow</item>
     </style>
