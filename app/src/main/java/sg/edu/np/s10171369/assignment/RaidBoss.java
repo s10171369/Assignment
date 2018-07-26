@@ -64,11 +64,11 @@ public class RaidBoss extends Fragment implements AppBarLayout.OnOffsetChangedLi
         }
     }
 
-    //@Override
-    //public void onCreate(Bundle savedInstanceState){
-    //    super.onCreate(savedInstanceState);
-    //    setHasOptionsMenu(true);
-    //}
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -195,6 +195,14 @@ public class RaidBoss extends Fragment implements AppBarLayout.OnOffsetChangedLi
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.normal_mode, menu);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        displayBoss = null;
+        hardBoss = null;
+        hardDifficulty = false;
     }
 
     public static void startAlphaAnimation (View v, long duration, int visibility) {
