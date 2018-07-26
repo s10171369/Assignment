@@ -19,9 +19,13 @@
             android:layout_marginBottom="0dp"
             android:fitsSystemWindows="true"
             app:collapsedTitleGravity="center"
+            app:collapsedTitleTextAppearance="@color/White"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleGravity="center"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:expandedTitleTextAppearance="@color/White"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title="List of Heroes"
+            app:titleEnabled="true">
 
             <ImageView
                 android:id="@+id/app_bar_image"
@@ -36,7 +40,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:titleTextColor="@color/White" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>

@@ -2,27 +2,26 @@ package sg.edu.np.s10171369.assignment;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.support.design.widget.CollapsingToolbarLayout;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
-import com.google.firebase.database.Transaction;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Guides extends Fragment {
 
@@ -50,6 +49,24 @@ public class Guides extends Fragment {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Get data
+        DBHandler dbHandler = new DBHandler(getActivity());
+        heroDataList = dbHandler.getAllHeroes();
+        raidBossDataList = dbHandler.getAllRaidBosses();
+
+        // add data into Page arraylist
+        Random r = new Random();
+        int ranIndex = r.nextInt(heroDataList.size());
+
+        Bitmap raidImage = BitmapFactory.decodeResource(getResources(), R.drawable.boss_guide_header_image);
+
+        data.add(new MainPageDataModel(heroDataList.get(ranIndex).getHeroImage(), "Hero Guide"));
+        data.add(new MainPageDataModel(raidImage, "Raid Guide"));
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.activity_guides, container, false);
@@ -61,14 +78,7 @@ public class Guides extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         myOnClickListener = new MyOnClickListener(getActivity());
 
-        // add data into arraylist
-        data.add(new MainPageDataModel(R.drawable.worryhugged, "Hero Guide"));
-        data.add(new MainPageDataModel(R.drawable.worryhugged, "Raid Guide"));
 
-        // Get hero data
-        DBHandler dbHandler = new DBHandler(getActivity());
-        heroDataList = dbHandler.getAllHeroes();
-        raidBossDataList = dbHandler.getAllRaidBosses();
 
         recyclerView = view.findViewById(R.id.recyclerView);
         itemAdapter = new MainPageCustomAdapter(data);
@@ -111,7 +121,7 @@ public class Guides extends Fragment {
             Fragment fragment = new RaidGuide();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.flContent, fragment);
+            fragmentTransaction.add(R.id.flContent, fragment);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }

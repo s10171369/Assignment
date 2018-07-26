@@ -50,8 +50,8 @@ public class HeroGuide extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         myOnClickListener = new MyOnClickListener(getActivity());
 
-        CollapsingToolbarLayout fragmentTitle = view.findViewById(R.id.collapsing_toolbar);
-        fragmentTitle.setTitle("List of Heroes");
+        //CollapsingToolbarLayout fragmentTitle = view.findViewById(R.id.collapsing_toolbar);
+        //fragmentTitle.setTitle("List of Heroes");
 
         recyclerView = view.findViewById(R.id.recyclerView);
 

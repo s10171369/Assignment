@@ -24,6 +24,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:alpha="0.8"
                 android:scaleType="fitXY" />
 
             <TextView
@@ -33,8 +34,9 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:text="Test"
-                android:textColor="@android:color/white"
-                android:textSize="24sp" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/HeroName"
+                android:textSize="26sp" />
 
         </RelativeLayout>
 

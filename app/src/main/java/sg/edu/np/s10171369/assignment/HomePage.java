@@ -129,7 +129,7 @@ public class HomePage extends AppCompatActivity {
             snackBar.show();
         }
         else {
-            ft.replace(R.id.flContent, fragment);
+            ft.add(R.id.flContent, fragment);
             ft.addToBackStack(null);
             ft.commit();
         }

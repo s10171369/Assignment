@@ -47,7 +47,7 @@ public class MainPageCustomAdapter extends RecyclerView.Adapter<MainPageCustomAd
         ImageView imageViewHeaderIcon = holder.imageViewHeaderIcon;
 
         textViewHeaderName.setText(dataSet.get(listPosition).getHeader());
-        imageViewHeaderIcon.setImageResource(dataSet.get(listPosition).getImage());
+        imageViewHeaderIcon.setImageBitmap(dataSet.get(listPosition).getImage());
     }
 
     @Override
