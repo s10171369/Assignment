@@ -1,20 +1,29 @@
 package sg.edu.np.s10171369.assignment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
+
+import com.google.firebase.database.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Guides extends AppCompatActivity {
+public class Guides extends Fragment {
 
     static List<HeroDataModel> heroDataList;
     static List<RaidBossDataModel> raidBossDataList;
@@ -25,29 +34,44 @@ public class Guides extends AppCompatActivity {
 
     List<MainPageDataModel> data = new ArrayList<>();
 
+    FragmentActivity listener;
+
+    public Guides() {
+
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_guides);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity){
+            this.listener = (FragmentActivity) context;
+        }
+    }
 
-        //ViewCompat.setTransitionName(findViewById(R.id.appbar), "transit");
-        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle("SendHaelp");
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        myOnClickListener = new MyOnClickListener(this);
+        View view = inflater.inflate(R.layout.activity_guides, container, false);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        myOnClickListener = new MyOnClickListener(getActivity());
 
         // add data into arraylist
         data.add(new MainPageDataModel(R.drawable.worryhugged, "Hero Guide"));
         data.add(new MainPageDataModel(R.drawable.worryhugged, "Raid Guide"));
 
         // Get hero data
-        DBHandler dbHandler = new DBHandler(this);
+        DBHandler dbHandler = new DBHandler(getActivity());
         heroDataList = dbHandler.getAllHeroes();
         raidBossDataList = dbHandler.getAllRaidBosses();
 
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = view.findViewById(R.id.recyclerView);
         itemAdapter = new MainPageCustomAdapter(data);
-        layoutManager = new LinearLayoutManager(this);
+        layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(itemAdapter);
@@ -68,12 +92,22 @@ public class Guides extends AppCompatActivity {
     private void launchPages(View v) {
         int index = recyclerView.getChildPosition(v);
         if (index == 0){
-            Intent intent = new Intent(this, HeroGuide.class);
+            Intent intent = new Intent(getActivity(), HeroGuide.class);
             startActivity(intent);
         }
         if (index == 1){
-            Intent intent = new Intent(this, RaidGuide.class);
-            startActivity(intent);
+            //Intent intent = new Intent(getActivity(), RaidGuide.class);
+            //startActivity(intent);
+
+            Fragment fragment = new RaidGuide();
+            //FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+            //transaction.add(R.id.flContent, fragment);
+            //transaction.commit();
+
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.flContent, fragment);
+            fragmentTransaction.commit();
         }
     }
 }
