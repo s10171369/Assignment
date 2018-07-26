@@ -97,9 +97,9 @@ public class HomePage extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         Snackbar snackBar = null;
+        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         switch(id) {
             case R.id.nav_home:
-                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 fragment = new HomeFragment();
                 setTitle("Home");
                 break;
@@ -111,8 +111,10 @@ public class HomePage extends AppCompatActivity {
                 snackBar = Snackbar.make(findViewById(R.id.linearLayout),"Coming Soon", Snackbar.LENGTH_SHORT);
                 break;
             case R.id.nav_extrainfo:
+                snackBar = Snackbar.make(findViewById(R.id.linearLayout),"Coming Soon", Snackbar.LENGTH_SHORT);
                 break;
             case R.id.nav_credits:
+                fragment = new Credits();
                 break;
         }
 
